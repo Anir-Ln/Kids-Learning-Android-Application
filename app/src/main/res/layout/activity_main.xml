@@ -88,146 +88,156 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/color"
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/color"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="380dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@drawable/color_item"-->
+<!--                    android:layout_marginRight="18dp"-->
+<!--                    android:layout_marginLeft="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="COLORS"-->
+<!--                    android:textSize="40sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="#fff"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:fontFamily="@font/cabin_sketch_bold"-->
+<!--                    android:layout_marginStart="105dp"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/number"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="380dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@drawable/number_item"-->
+<!--                    android:layout_marginRight="18dp"-->
+<!--                    android:layout_marginLeft="18dp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="NUMBERS"-->
+<!--                    android:textSize="40sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="#fff"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:fontFamily="@font/cabin_sketch_bold"-->
+<!--                    android:layout_marginStart="105dp"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/alphabet"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="380dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@drawable/alphabet_item"-->
+<!--                    android:layout_marginRight="18dp"-->
+<!--                    android:layout_marginLeft="18dp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="ALPHABETS"-->
+<!--                    android:textSize="40sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="#fff"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:fontFamily="@font/cabin_sketch_bold"-->
+<!--                    android:layout_marginStart="105dp"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/week"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="380dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@drawable/days_item"-->
+<!--                    android:layout_marginRight="18dp"-->
+<!--                    android:layout_marginLeft="18dp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="WEEK DAYS"-->
+<!--                    android:textSize="40sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="#fff"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:fontFamily="@font/cabin_sketch_bold"-->
+<!--                    android:layout_marginStart="105dp"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/shape"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="380dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@drawable/shape_item"-->
+<!--                    android:layout_marginRight="18dp"-->
+<!--                    android:layout_marginLeft="18dp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="SHAPES"-->
+<!--                    android:textSize="40sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="#fff"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:fontFamily="@font/cabin_sketch_bold"-->
+<!--                    android:layout_marginStart="105dp"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </RelativeLayout>-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/color_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recycler_main"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="COLORS"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/number_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NUMBERS"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/alphabet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/alphabet_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ALPHABETS"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/week"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/days_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="WEEK DAYS"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/shape"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:layout_width="380dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/shape_item"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginLeft="18dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SHAPES"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/cabin_sketch_bold"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="20dp"/>
-
-            </RelativeLayout>
-
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
