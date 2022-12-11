@@ -2,7 +2,14 @@ package ideanity.oceans.kidslearning.helpers;
 
 public class SQLiteDbHelper {
 
-    public static String[] getElementsByClass(String lessonName) {
+    private static final SQLiteDbHelper instance = new SQLiteDbHelper();
+    private SQLiteDbHelper() {}
+
+    public static SQLiteDbHelper getInstance() {
+        return SQLiteDbHelper.instance;
+    }
+
+    public  String[] getElementsByClass(String lessonName) {
         return null;
     }
 }
