@@ -1,7 +1,10 @@
 package ideanity.oceans.kidslearning;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,10 +12,18 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    RelativeLayout color, number, alphabet, week, shape;
-    LinearLayout poem;
+import ideanity.oceans.kidslearning.adapter.MainAdapter;
+import ideanity.oceans.kidslearning.helpers.LessonHelper;
+
+public class MainActivity extends AppCompatActivity implements RecyclerViewAction  {
+
+
+
+    RecyclerView recyclerViewShape;
+    RecyclerView.Adapter adapter;
+    String[] elementsNames ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,38 +31,48 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        color = findViewById(R.id.color);
-        number = findViewById(R.id.number);
-        alphabet = findViewById(R.id.alphabet);
-        week = findViewById(R.id.week);
-        shape = findViewById(R.id.shape);
-        poem = findViewById(R.id.lil_poem);
 
-//        String[] lessonsNames = new String[] {"numbers", "shapes",,,,};
+        recyclerViewShape = findViewById(R.id.recycler_main);
 
 
-        number.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GenericActivity.class);
-            intent.putExtra("lessonName", "numbers");
-            startActivity(intent);
-        });
-//
-        alphabet.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GenericActivity.class);
-            intent.putExtra("lessonName", "alphabets");
-            startActivity(intent);            });
 
-        week.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GenericActivity.class);
-            intent.putExtra("lessonName", "week");
-            startActivity(intent);
-        });
+        elementsNames = new String[] {"letters", "vegetles", "vehiculs", "fruits"};
 
-        shape.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GenericActivity.class);
-            intent.putExtra("lessonName", "shapes");
-            startActivity(intent);
-        });
+        featuredShapes(elementsNames);
+    }
+
+
+
+
+    private void featuredShapes(String[] elementsNames) {
+        ArrayList<LessonHelper> questionLocations = new ArrayList<>();
+        int drawable;
+        for (String element: elementsNames) {
+            questionLocations.add(new LessonHelper(element));
+        }
+        adapter = new MainAdapter(questionLocations, this, this);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+        recyclerViewShape.setLayoutManager(gridLayoutManager);
+        recyclerViewShape.setAdapter(adapter);
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onViewClicked(int clickedViewId, int clickedItemPosition) {
+        Intent intent = new Intent(MainActivity.this, GenericActivity.class);
+        intent.putExtra("lessonName", elementsNames[clickedItemPosition]);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onViewLongClicked(int clickedViewId, int clickedItemPosition) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
 }
