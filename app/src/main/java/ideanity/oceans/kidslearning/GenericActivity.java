@@ -53,7 +53,7 @@ public class GenericActivity extends AppCompatActivity implements RecyclerViewAc
         resources = getResources();
         System.out.println("resources");
         // get the elements names from the database
-        elementsNames = SQLiteDbHelper.getElementsByClass();
+        elementsNames = SQLiteDbHelper.getInstance().getElementsByClass();
         elementsNames = new String[] {"circle", "square", "triangle", "star", "rectangle", "oval", "diamond", "hexagon"};
         mediaElements = new ArrayList<>();
         int sound;
