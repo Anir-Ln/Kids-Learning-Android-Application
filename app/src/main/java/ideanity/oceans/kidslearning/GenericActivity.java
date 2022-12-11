@@ -51,17 +51,19 @@ public class GenericActivity extends AppCompatActivity implements RecyclerViewAc
         backMenu = findViewById(R.id.menu_nav);
         colorName = findViewById(R.id.element_number);
         resources = getResources();
-        System.out.println("resources");
+
+        // get the lessonName from the intent extra
+        String lessonName = getIntent().getStringExtra("lessonName");
+        System.out.println(lessonName);
         // get the elements names from the database
-        elementsNames = SQLiteDbHelper.getInstance().getElementsByClass();
-        elementsNames = new String[] {"circle", "square", "triangle", "star", "rectangle", "oval", "diamond", "hexagon"};
+        elementsNames = SQLiteDbHelper.getInstance().getElementsByLessonName(lessonName);
         mediaElements = new ArrayList<>();
         int sound;
         for (String element : elementsNames) {
             sound = resources.getIdentifier(element, "raw", getPackageName());
             mediaElements.add(MediaPlayer.create(GenericActivity.this, sound));
         }
-        System.out.println("here");
+
         backMenu.setOnClickListener(v -> GenericActivity.super.onBackPressed());
         featuredShapes(elementsNames);
     }

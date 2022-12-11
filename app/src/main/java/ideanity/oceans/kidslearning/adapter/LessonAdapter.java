@@ -30,7 +30,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ColorViewH
     @NonNull
     @Override
     public ColorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_allshapes, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_allelements, parent, false);
         ColorViewHolder colorViewHolder = new ColorViewHolder(view);
         return colorViewHolder;
     }

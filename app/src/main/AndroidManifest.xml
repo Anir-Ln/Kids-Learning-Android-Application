@@ -16,12 +16,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".ShapesActivity" />
-        <activity android:name=".WeekActivity" />
-        <activity android:name=".AlphabetActivity" />
-        <activity android:name=".NumbersActivity" />
-        <activity android:name=".ColorsActivity" />
-        <activity android:name=".PoemsActivity" />
         <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

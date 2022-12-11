@@ -27,52 +27,31 @@ public class MainActivity extends AppCompatActivity {
         shape = findViewById(R.id.shape);
         poem = findViewById(R.id.lil_poem);
 
-        color.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ColorsActivity.class));
-            }
+//        String[] lessonsNames = new String[] {"numbers", "shapes",,,,};
+
+
+        number.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GenericActivity.class);
+            intent.putExtra("lessonName", "numbers");
+            startActivity(intent);
+        });
+//
+        alphabet.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GenericActivity.class);
+            intent.putExtra("lessonName", "alphabets");
+            startActivity(intent);            });
+
+        week.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GenericActivity.class);
+            intent.putExtra("lessonName", "week");
+            startActivity(intent);
         });
 
-        number.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NumbersActivity.class));
-            }
+        shape.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GenericActivity.class);
+            intent.putExtra("lessonName", "shapes");
+            startActivity(intent);
         });
-
-        alphabet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AlphabetActivity.class));
-            }
-        });
-
-        week.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WeekActivity.class);
-                intent.putExtra("lessonName", "weeks");
-                startActivity(intent);
-
-            }
-        });
-
-        shape.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GenericActivity.class));
-            }
-        });
-
-        poem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, PoemsActivity.class));
-            }
-        });
-
-
     }
 
 }
