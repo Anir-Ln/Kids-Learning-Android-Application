@@ -56,7 +56,7 @@ public class GenericActivity extends AppCompatActivity implements RecyclerViewAc
         String lessonName = getIntent().getStringExtra("lessonName");
         System.out.println(lessonName);
         // get the elements names from the database
-        elementsNames = SQLiteDbHelper.getInstance().getElementsByLessonName(lessonName);
+        elementsNames = new SQLiteDbHelper(GenericActivity.this).getElementsByLessonName(lessonName);
         mediaElements = new ArrayList<>();
         int sound;
         for (String element : elementsNames) {
