@@ -1,6 +1,7 @@
 package ideanity.oceans.kidslearning.helpers;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +38,15 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
         this.context = context;
         if (db != null && db.isOpen()) close();
 
-        openDatabase();
+        try {
+            createDataBase();
+            openDatabase();
+        } catch (IOException e) {
+            // System.out.println("Exception in creation of database : "+
+            // e.getMessage());
+            e.printStackTrace();
+        }
+
 
         lessons.put("shapes", shapes);
         lessons.put("daysOfWeek", daysOfWeek);
@@ -41,7 +54,55 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
         lessons.put("alphabets", alphabets);
     }
 
-    public void openDatabase() {
+    public void createDataBase() throws IOException {
+        boolean dbExist = checkDatabase();
+        if (!dbExist) {
+            this.getReadableDatabase();
+            try {
+                copyDatabase();
+            } catch (IOException e) {
+                throw new Error("Error copying database");
+            }
+        }
+    }
+
+    private boolean checkDatabase() {
+        SQLiteDatabase checkDB = null;
+        try {
+            String myPath = DB_PATH + DB_NAME;
+            checkDB = SQLiteDatabase.openDatabase(myPath, null,
+                    SQLiteDatabase.OPEN_READWRITE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (checkDB != null) {
+            checkDB.close();
+            System.out.println("My db is:- " + checkDB.isOpen());
+        }
+
+        return checkDB != null;
+    }
+
+    private void copyDatabase() throws IOException {
+        InputStream input = context.getAssets().open(DB_NAME);
+        String outputFileName = DB_PATH + DB_NAME;
+        OutputStream output = new FileOutputStream(outputFileName);
+
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = input.read(buffer)) > 0) {
+            output.write(buffer, 0, length);
+        }
+
+        // Close the streams
+        output.flush();
+        output.close();
+        input.close();
+        System.out.println(DB_NAME + "Database Copied !");
+    }
+
+    private void openDatabase() {
         String path = DB_PATH + DB_NAME;
         db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
     }
@@ -59,10 +120,26 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
         super.close();
     }
 
+    @SuppressLint("Range")
     public  String[] getElementsByLessonName(String lessonName) {
         if (!lessons.containsKey(lessonName))
             return null;
-        return readData(lessonName);
+        db = getReadableDatabase();
+        List<String> data = new ArrayList<>();
+        try (
+            Cursor cursor = db.rawQuery(selectTableQuery(lessonName), null)
+        ) {
+            cursor.moveToFirst();
+            do {
+                System.out.println(cursor);
+                data.add(cursor.getString(cursor.getColumnIndex("name")));
+            } while (cursor.moveToNext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return data.toArray(new String[data.size()]);
     }
 
 
@@ -106,22 +183,5 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
 //        onCreate(db);
     }
 
-    public String[] readData(String lessonName) {
-        db = getReadableDatabase();
-        List<String> data = new ArrayList<>();
-        try (
-            Cursor cursor = db.rawQuery(selectTableQuery(lessonName), null)
-        ) {
-            cursor.moveToFirst();
-            do {
-                System.out.println(cursor);
-                data.add(cursor.getString(cursor.getColumnIndex("name")));
-            } while (cursor.moveToNext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            db.close();
-        }
-        return data.toArray(new String[data.size()]);
-    }
+
 }

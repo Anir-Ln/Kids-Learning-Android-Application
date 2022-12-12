@@ -33,10 +33,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewActio
 
 
         recyclerViewShape = findViewById(R.id.recycler_main);
-
-
-
-        elementsNames = new String[] {"letters", "vegetles", "vehiculs", "fruits"};
+        elementsNames = new String[] {"shapes", "daysOfWeek", "numbers", "alphabets"};
 
         featuredShapes(elementsNames);
     }

@@ -38,8 +38,8 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ColorViewH
     @Override
     public void onBindViewHolder(@NonNull ColorViewHolder holder, int position) {
         final LessonElementHelper lessonElement = lessonElements.get(position);
-
-        holder.title.setImageResource(lessonElement.getImage());
+        int image = lessonElement.getImage();
+        holder.title.setImageResource(image);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
