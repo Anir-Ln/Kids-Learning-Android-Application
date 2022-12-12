@@ -1,4 +1,4 @@
-package ideanity.oceans.kidslearning.helpers;
+package com.anirayoubil.kidsLearning.helpers;
 
 public class LessonElementHelper {
     private final int image;

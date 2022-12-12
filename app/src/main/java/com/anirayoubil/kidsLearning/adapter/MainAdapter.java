@@ -1,4 +1,4 @@
-package ideanity.oceans.kidslearning.adapter;
+package com.anirayoubil.kidsLearning.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import ideanity.oceans.kidslearning.R;
-import ideanity.oceans.kidslearning.RecyclerViewAction;
-import ideanity.oceans.kidslearning.helpers.LessonHelper;
+import com.anirayoubil.kidsLearning.R;
+import com.anirayoubil.kidsLearning.RecyclerViewAction;
+import com.anirayoubil.kidsLearning.helpers.LessonHelper;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ColorViewHolder> {
     ArrayList<LessonHelper> lessonElements;

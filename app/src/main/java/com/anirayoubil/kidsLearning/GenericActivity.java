@@ -1,4 +1,4 @@
-package ideanity.oceans.kidslearning;
+package com.anirayoubil.kidsLearning;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -17,9 +16,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import ideanity.oceans.kidslearning.adapter.LessonAdapter;
-import ideanity.oceans.kidslearning.helpers.LessonElementHelper;
-import ideanity.oceans.kidslearning.helpers.SQLiteDbHelper;
+import com.anirayoubil.kidsLearning.adapter.LessonAdapter;
+import com.anirayoubil.kidsLearning.helpers.LessonElementHelper;
+import com.anirayoubil.kidsLearning.helpers.SQLiteDbHelper;
 
 public class GenericActivity extends AppCompatActivity implements RecyclerViewAction {
 

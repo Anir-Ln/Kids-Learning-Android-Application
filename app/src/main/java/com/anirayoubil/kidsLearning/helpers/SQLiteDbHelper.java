@@ -1,4 +1,4 @@
-package ideanity.oceans.kidslearning.helpers;
+package com.anirayoubil.kidsLearning.helpers;
 
 
 import android.annotation.SuppressLint;
@@ -27,7 +27,7 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
     private static final HashMap<String, String[]> lessons = new HashMap<>();
 
     private static final String DB_NAME = "KidsLearning.db";
-    private static final String DB_PATH = "data/data/ideanity.oceans.kidslearning/databases/";
+    private static final String DB_PATH = "data/data/com.anirayoubil.kidsLearning/databases/";
     private static final int DB_VERSION = 1;
 
     private Context context;
