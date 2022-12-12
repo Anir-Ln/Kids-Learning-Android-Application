@@ -9,7 +9,7 @@ range 4-7 yo;
 range 8-10 yo;
 	....
 
-## By localisation
+### By localisation
 the alphabets change from location to another
 #### north Africa: 
 Amazigh, English & Arabic Alphbaets
