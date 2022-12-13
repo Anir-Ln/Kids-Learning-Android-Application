@@ -9,9 +9,10 @@ range 4-7 yo;
 range 8-10 yo;
 	....
 
+## Features to add leater
 ### By localisation
 the alphabets change from location to another
-#### north Africa: 
+#### North Africa: 
 Amazigh, English & Arabic Alphbaets
 #### Middle East 
 Arabic & English Alphabets
