@@ -167,6 +167,11 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
     }
 
 
+    public String getLessonsNamesByAge(int age){
+        return "SELECT * FROM lessons_names where min_age <= "+age+" and max_age > "+age ;
+    }
+
+
     private String createTableQuery(String tableName) {
         return "CREATE TABLE IF NOT EXISTS " + tableName + " ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -193,6 +198,27 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
 //                e.printStackTrace();
 //            }
 //        }
+    }
+
+    @SuppressLint("Range")
+    public String[] readDataLessonsByage(int age) {
+        db = getReadableDatabase();
+        List<String> data = new ArrayList<>();
+        try (
+                Cursor cursor = db.rawQuery(getLessonsNamesByAge(age), null)
+        ) {
+            cursor.moveToFirst();
+            int i=0;
+            do {
+                System.out.println(cursor);
+                data.add(cursor.getString(cursor.getColumnIndex("name")));
+            } while (cursor.moveToNext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return data.toArray(new String[data.size()]);
     }
 
     @Override

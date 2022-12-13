@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/home_bg"
+    android:background="@drawable/bg1"
     android:paddingStart="3dp"
     android:paddingEnd="3dp">
 
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/app_icon_android"
+        android:layout_width="94dp"
+        android:layout_height="86dp"
         android:layout_gravity="end"
-        android:layout_margin="15dp"/>
+        android:layout_margin="15dp"
+        android:src="@drawable/app_icon_android" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,16 +22,17 @@
         android:padding="30dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
-            android:text="Kids Let's \nLearn"
-            android:textSize="40sp"
-            android:textColor="#fff"
-            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed"
             android:letterSpacing="0.03"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"/>
+            android:text="Kids Let's \nLearn"
+            android:textColor="#FB7AA6"
+            android:textSize="40sp"
+            android:shadowRadius="@android:integer/config_longAnimTime"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -46,49 +47,7 @@
             android:orientation="vertical"
             android:layout_marginBottom="20dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/top_card"
-                android:orientation="vertical"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:padding="30dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Start learnig\nnew Things!"
-                    android:textSize="26dp"
-                    android:textColor="#305F72"
-                    android:fontFamily="sans-serif-black"
-                    android:letterSpacing="0.035" />
-
-                <LinearLayout
-                    android:id="@+id/lil_poem"
-                    android:layout_width="160dp"
-                    android:layout_height="55dp"
-                    android:background="@drawable/card_buttton_bg"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Poems / Rhymes"
-                        android:textColor="#fff"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"/>
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-<!--            <RelativeLayout-->
+            <!--            <RelativeLayout-->
 <!--                android:id="@+id/color"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content">-->
@@ -227,6 +186,48 @@
 <!--                    android:layout_marginTop="20dp"/>-->
 
 <!--            </RelativeLayout>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/top_card"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="0.035"
+                    android:text="Start learnig\nnew Things!"
+                    android:textColor="#305F72"
+                    android:textSize="26dp" />
+
+                <LinearLayout
+                    android:id="@+id/lil_poem"
+                    android:layout_width="160dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/card_buttton_bg"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:text="Poems / Rhymes"
+                        android:textAllCaps="true"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
