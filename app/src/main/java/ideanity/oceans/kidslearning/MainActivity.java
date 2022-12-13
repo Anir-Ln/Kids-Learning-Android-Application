@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import ideanity.oceans.kidslearning.adapter.MainAdapter;
 import ideanity.oceans.kidslearning.helpers.LessonHelper;
+import ideanity.oceans.kidslearning.helpers.SQLiteDbHelper;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewAction  {
 
@@ -31,10 +32,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewActio
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-
+        int age =5  ;
         recyclerViewShape = findViewById(R.id.recycler_main);
-        elementsNames = new String[] {"shapes", "daysOfWeek", "numbers", "alphabets"};
-
+        elementsNames = new SQLiteDbHelper(MainActivity.this).readDataLessonsByage(age);
         featuredShapes(elementsNames);
     }
 
