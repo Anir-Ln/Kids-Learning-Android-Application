@@ -1,47 +1,62 @@
 package com.anirayoubil.kidsLearning;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.anirayoubil.kidsLearning.adapter.MainAdapter;
+import com.anirayoubil.kidsLearning.data.models.Profile;
 import com.anirayoubil.kidsLearning.helpers.LessonHelper;
 import com.anirayoubil.kidsLearning.helpers.SQLiteDbHelper;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewAction  {
+public class ProfilesActivity extends AppCompatActivity implements RecyclerViewAction{
+
     RecyclerView recyclerViewShape;
     RecyclerView.Adapter adapter;
-    String[] elementsNames ;
+    List<Profile> profiles;
+    Button createProfileButton;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profiles);
 
+        createProfileButton = (Button) findViewById(R.id.create_profile_btn);
+        createProfileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfilesActivity.this, CreateProfileActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
-        recyclerViewShape = findViewById(R.id.recycler_main);
-        int age = getIntent().getIntExtra("profileAge", 5);
-        elementsNames = new SQLiteDbHelper(MainActivity.this).readDataLessonsByAge(age);
+        recyclerViewShape = findViewById(R.id.recycler_element);
+//        elementsNames = new String[] {"shapes", "daysOfWeek", "numbers", "alphabets"};
+        profiles = new SQLiteDbHelper(ProfilesActivity.this).getProfiles();
 
-        featuredShapes(elementsNames);
+        featuredShapes(profiles);
     }
 
 
 
 
-    private void featuredShapes(String[] elementsNames) {
+    private void featuredShapes(List<Profile> profiles) {
         ArrayList<LessonHelper> questionLocations = new ArrayList<>();
         int drawable;
-        for (String element: elementsNames) {
-            questionLocations.add(new LessonHelper(element));
+        for (Profile profile: profiles) {
+            questionLocations.add(new LessonHelper(profile.getName()));
         }
         adapter = new MainAdapter(questionLocations, this, this);
 
@@ -53,8 +68,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewActio
     @SuppressLint("SetTextI18n")
     @Override
     public void onViewClicked(int clickedViewId, int clickedItemPosition) {
-        Intent intent = new Intent(MainActivity.this, LessonActivity.class);
-        intent.putExtra("lessonName", elementsNames[clickedItemPosition]);
+        Intent intent = new Intent(ProfilesActivity.this, MainActivity.class);
+        intent.putExtra("profileName", profiles.get(clickedItemPosition).getName());
+        intent.putExtra("profileAge", profiles.get(clickedItemPosition).getAge());
         startActivity(intent);
     }
 
@@ -67,5 +83,4 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewActio
     public void onDestroy() {
         super.onDestroy();
     }
-
 }

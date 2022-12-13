@@ -20,7 +20,7 @@ import com.anirayoubil.kidsLearning.adapter.LessonAdapter;
 import com.anirayoubil.kidsLearning.helpers.LessonElementHelper;
 import com.anirayoubil.kidsLearning.helpers.SQLiteDbHelper;
 
-public class GenericActivity extends AppCompatActivity implements RecyclerViewAction {
+public class LessonActivity extends AppCompatActivity implements RecyclerViewAction {
 
     RecyclerView recyclerViewShape;
     RecyclerView.Adapter adapter;
@@ -48,18 +48,18 @@ public class GenericActivity extends AppCompatActivity implements RecyclerViewAc
         String lessonName = getIntent().getStringExtra("lessonName");
         System.out.println(lessonName);
         // get the elements names from the database
-        SQLiteDbHelper dbHelper = new SQLiteDbHelper(GenericActivity.this);
+        SQLiteDbHelper dbHelper = new SQLiteDbHelper(LessonActivity.this);
         elementsNames = dbHelper.getElementsByLessonName(lessonName);
         dbHelper.close();
         mediaElements = new ArrayList<>();
         int sound;
         for (String element : elementsNames) {
             sound = resources.getIdentifier(element, "raw", getPackageName());
-            MediaPlayer mediaPlayer = sound == 0 ? null : MediaPlayer.create(GenericActivity.this, sound);
+            MediaPlayer mediaPlayer = sound == 0 ? null : MediaPlayer.create(LessonActivity.this, sound);
             mediaElements.add(mediaPlayer);
         }
 
-        backMenu.setOnClickListener(v -> GenericActivity.super.onBackPressed());
+        backMenu.setOnClickListener(v -> LessonActivity.super.onBackPressed());
         featuredShapes(elementsNames);
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LessonActivity">
+    tools:context=".ProfilesActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,16 +13,28 @@
         android:background="@drawable/shape_detail"
         android:padding="20dp">
 
-        <ImageView
-            android:id="@+id/menu_nav"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/swap"/>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+            >
+            <ImageView
+                    android:id="@+id/menu_nav"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/swap"/>
+
+            <Button
+                    android:id="@+id/create_profile_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="create profile"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/material_on_background_disabled" />
+        </RelativeLayout>
 
         <RelativeLayout
-            android:layout_below="@id/menu_nav"
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="70dp"
             android:layout_height="wrap_content">
 
             <TextView
@@ -31,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/cabin_sketch_bold"
-                android:text="Elements"
+                android:text="Profiles"
                 android:textAllCaps="true"
                 android:textColor="#fff"
                 android:textSize="40sp"

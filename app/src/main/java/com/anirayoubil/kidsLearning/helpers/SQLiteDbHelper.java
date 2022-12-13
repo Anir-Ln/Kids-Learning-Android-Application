@@ -2,18 +2,29 @@ package com.anirayoubil.kidsLearning.helpers;
 
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
+import com.anirayoubil.kidsLearning.data.models.Profile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SQLiteDbHelper extends SQLiteOpenHelper {
@@ -219,4 +230,72 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SuppressLint("Range")
+    public List<Profile> getProfiles() {
+        db = getReadableDatabase();
+        List<Profile> data = new ArrayList<>();
+        String name;
+        String birthDate;
+        try (
+                Cursor cursor = db.rawQuery("select * from profiles", null)
+        ) {
+            if(cursor!=null && cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        System.out.println(cursor);
+                        name = cursor.getString(1);
+                        birthDate = cursor.getString(2);
+                        System.out.println("name: " + name + "birthdate: " + birthDate);
+                        data.add(new Profile(name, getAge(birthDate)));
+                    } while (cursor.moveToNext());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return data;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private int getAge(String birthDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        Date date = null;
+        Period period = null;
+        try {
+            date = sdf.parse(birthDate);
+            LocalDate localDate = LocalDate.of(date.getYear(), date.getMonth() + 1, date.getDay() + 1);
+            period = Period.between(localDate, LocalDate.now());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        assert period != null;
+        return period.getYears();
+    }
+
+    public void createProfile(String name, String dateString) {
+
+        db = getWritableDatabase();
+        String[] dateValue = dateString.split("-") ;
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        Date date = new Date(Integer.parseInt(dateValue[0])
+        , Integer.parseInt(dateValue[1])
+        , Integer.parseInt(dateValue[2]));
+
+        String birthDate = sdf.format(date);
+        System.out.println("creating new profile");
+        System.out.println(name + " " + birthDate);
+        try {
+            ContentValues values = new ContentValues();
+            values.put("name", name);
+            values.put("birthdate", birthDate);
+            db.insert("profiles", null, values);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

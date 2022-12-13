@@ -21,6 +21,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ColorViewHolde
     private Context mContext;
     private RecyclerViewAction recyclerViewAction;
 
+
     public MainAdapter(ArrayList<LessonHelper> lessonElements, Context mContext, RecyclerViewAction recyclerViewAction) {
         this.lessonElements = lessonElements;
         this.mContext = mContext;
