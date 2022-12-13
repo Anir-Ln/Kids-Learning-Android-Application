@@ -27,14 +27,6 @@ public class GenericActivity extends AppCompatActivity implements RecyclerViewAc
 
     static List<MediaPlayer> mediaElements;
     String[] elementsNames;
-//    static MediaPlayer mpone;
-//    static MediaPlayer mptwo;
-//    static MediaPlayer mpthree;
-//    static MediaPlayer mpfour;
-//    static MediaPlayer mpfive;
-//    static MediaPlayer mpsix;
-//    static MediaPlayer mpseven;
-//    static MediaPlayer mpeight;
 
     ImageView backMenu;
     TextView colorName;
@@ -56,12 +48,15 @@ public class GenericActivity extends AppCompatActivity implements RecyclerViewAc
         String lessonName = getIntent().getStringExtra("lessonName");
         System.out.println(lessonName);
         // get the elements names from the database
-        elementsNames = new SQLiteDbHelper(GenericActivity.this).getElementsByLessonName(lessonName);
+        SQLiteDbHelper dbHelper = new SQLiteDbHelper(GenericActivity.this);
+        elementsNames = dbHelper.getElementsByLessonName(lessonName);
+        dbHelper.close();
         mediaElements = new ArrayList<>();
         int sound;
         for (String element : elementsNames) {
             sound = resources.getIdentifier(element, "raw", getPackageName());
-            mediaElements.add(MediaPlayer.create(GenericActivity.this, sound));
+            MediaPlayer mediaPlayer = sound == 0 ? null : MediaPlayer.create(GenericActivity.this, sound);
+            mediaElements.add(mediaPlayer);
         }
 
         backMenu.setOnClickListener(v -> GenericActivity.super.onBackPressed());
@@ -102,6 +97,9 @@ public class GenericActivity extends AppCompatActivity implements RecyclerViewAc
     @Override
     public void onDestroy() {
         super.onDestroy();
-        for (MediaPlayer mediaPlayer: mediaElements) mediaPlayer.release();
+        for (MediaPlayer mediaPlayer: mediaElements) {
+            if (mediaPlayer != null)
+                mediaPlayer.release();
+        }
     }
 }

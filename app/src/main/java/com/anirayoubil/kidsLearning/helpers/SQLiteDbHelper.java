@@ -14,24 +14,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SQLiteDbHelper extends SQLiteOpenHelper {
-    private static final String[] lessonsNames = {"shapes", "daysOfWeek", "numbers", "alphabets"};
-    private static final String[] shapes = new String[] {"circle", "square", "triangle", "star", "rectangle", "oval", "diamond", "hexagon"};
-    private static final String[] daysOfWeek = new String[] {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
-    private static final String[] numbers = new String[] {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"};
-    private static final String[] alphabets = new String[] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+//    private static final String[] lessonsNames = {"shapes", "daysOfWeek", "numbers", "alphabets"};
+//    private static final String[] shapes = new String[] {"circle", "square", "triangle", "star", "rectangle", "oval", "diamond", "hexagon"};
+//    private static final String[] daysOfWeek = new String[] {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
+//    private static final String[] numbers = new String[] {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"};
+//    private static final String[] alphabets = new String[] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
-    private static final HashMap<String, String[]> lessons = new HashMap<>();
+//    private static final HashMap<String, String[]> lessons = new HashMap<>();
 
-    private static final String DB_NAME = "KidsLearning.db";
+    private static final String DB_NAME = "kidsLearning.db";
     private static final String DB_PATH = "data/data/com.anirayoubil.kidsLearning/databases/";
     private static final int DB_VERSION = 1;
 
     private Context context;
     private SQLiteDatabase db;
+
+    @SuppressLint("StaticFieldLeak")
+    private static SQLiteDbHelper instance;
+
+    public static SQLiteDbHelper getInstance(Context context) {
+        if (instance == null) {
+            instance = new SQLiteDbHelper(context);
+        }
+        return instance;
+    }
 
     public SQLiteDbHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -48,15 +57,16 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
         }
 
 
-        lessons.put("shapes", shapes);
-        lessons.put("daysOfWeek", daysOfWeek);
-        lessons.put("numbers", numbers);
-        lessons.put("alphabets", alphabets);
+//        lessons.put("shapes", shapes);
+//        lessons.put("daysOfWeek", daysOfWeek);
+//        lessons.put("numbers", numbers);
+//        lessons.put("alphabets", alphabets);
     }
 
     public void createDataBase() throws IOException {
         boolean dbExist = checkDatabase();
         if (!dbExist) {
+            System.out.println("db doesn;t exist");
             this.getReadableDatabase();
             try {
                 copyDatabase();
@@ -108,10 +118,10 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
     }
 
     public boolean isOpen() {
-    if (db != null)
-        return db.isOpen();
-    return false;
-}
+        if (db != null)
+            return db.isOpen();
+        return false;
+    }
 
     @Override
     public synchronized void close() {
@@ -122,8 +132,8 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public  String[] getElementsByLessonName(String lessonName) {
-        if (!lessons.containsKey(lessonName))
-            return null;
+//        if (!lessons.containsKey(lessonName))
+//            return null;
         db = getReadableDatabase();
         List<String> data = new ArrayList<>();
         try (
@@ -145,31 +155,6 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
         return "SELECT * FROM lessons_names where min_age <= "+age+" and max_age > "+age ;
     }
 
-    @SuppressLint("Range")
-    public String[] readDataLessonsByage(int age) {
-        db = getReadableDatabase();
-        List<String> data = new ArrayList<>();
-        try (
-                Cursor cursor = db.rawQuery(getLessonsNamesByAge(age), null)
-        ) {
-            cursor.moveToFirst();
-            int i=0;
-            do {
-                System.out.println(cursor);
-                data.add(cursor.getString(cursor.getColumnIndex("name")));
-            } while (cursor.moveToNext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            db.close();
-        }
-        return data.toArray(new String[data.size()]);
-    }
-
-
-    public String getLessonsNamesByAge(int age){
-        return "SELECT * FROM lessons_names where min_age <= "+age+" and max_age > "+age ;
-    }
 
 
     private String createTableQuery(String tableName) {
@@ -201,7 +186,7 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public String[] readDataLessonsByage(int age) {
+    public String[] readDataLessonsByAge(int age) {
         db = getReadableDatabase();
         List<String> data = new ArrayList<>();
         try (

@@ -16,9 +16,6 @@ import com.anirayoubil.kidsLearning.helpers.LessonHelper;
 import com.anirayoubil.kidsLearning.helpers.SQLiteDbHelper;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewAction  {
-
-
-
     RecyclerView recyclerViewShape;
     RecyclerView.Adapter adapter;
     String[] elementsNames ;
@@ -31,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewActio
 
 
         recyclerViewShape = findViewById(R.id.recycler_main);
-        elementsNames = new String[] {"shapes", "daysOfWeek", "numbers", "alphabets"};
-        elementsNames = new SQLiteDbHelper(MainActivity.this).readDataLessonsByage(4);
+//        elementsNames = new String[] {"shapes", "daysOfWeek", "numbers", "alphabets"};
+        elementsNames = new SQLiteDbHelper(MainActivity.this).readDataLessonsByAge(4);
 
         featuredShapes(elementsNames);
     }
