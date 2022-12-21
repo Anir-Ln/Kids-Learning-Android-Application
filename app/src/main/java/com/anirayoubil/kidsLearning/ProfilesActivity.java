@@ -39,7 +39,6 @@ public class ProfilesActivity extends AppCompatActivity implements RecyclerViewA
         createProfileButton.setOnClickListener(v -> {
             Intent intent = new Intent(ProfilesActivity.this, CreateProfileActivity.class);
             startActivity(intent);
-            finish();
         });
 
         recyclerViewShape = findViewById(R.id.recycler_element);

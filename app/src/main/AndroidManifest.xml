@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.anirayoubil.kidsLearning">
 
     <application
@@ -45,4 +46,7 @@
                 android:resource="@array/preloaded_fonts" />
     </application>
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+            tools:ignore="CoarseFineLocation,ManifestOrder" />
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
